@@ -1,38 +1,106 @@
+/*
+#5680E9;
+#84CEEB;
+#5AB9EA;
+#C1C8E4;
+#8860D0;
+ */
+
+body, p, a, ul, ol, li {
+  font-family: 'Bellota Text', sans-serif
+}
+
+h1, h2, h3 {
+  font-family: 'Bellota', cursive;
+}
+
+h1 {
+  font-size: 4vw;
+}
+
 .App {
+  border: 1px solid gray;
+  margin: 0 auto;
+}
+
+.credit {
+  background-color: #8860D0;
+  color: #C1C8E4;
+  display: block;
+  text-align: center;
+  padding: 20px;
+}
+
+.App player {
+  height: 500px;
+}
+
+header div:first-child {
+  float: left;
+  width: 90%;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+header div:first-child p {
+  font-size: 2vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* sibling selector or could use  .settings */
+header div+div {
+  float: left;
+  width: 10%;
+  text-align: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+
+footer a {
+  text-decoration: none;
+}
+
+footer a:hover {
   color: white;
+  font-weight: bold;
 }
 
-.App-link {
-  color: #61dafb;
+footer {
+  width: 100%;
+  clear: both;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+
+/* Breakpoints source: https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .App {
+    width: 100%;
+    margin: 0;
   }
-  to {
-    transform: rotate(360deg);
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .App {
+    width: 80%
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .App {
+    width: 70%
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .App {
+    width: 60%
+  }
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .App {
+    width: 50%
   }
 }
