@@ -23,6 +23,9 @@ h1 {
   margin: 0 auto;
 }
 
+player {
+  height: 1000px;
+}
 .credit {
   background-color: #8860D0;
   color: #C1C8E4;
@@ -33,11 +36,11 @@ h1 {
 
 .App player {
   height: 500px;
+  display: block;
 }
 
 header div:first-child {
-  float: left;
-  width: 90%;
+  width: 100%;
   text-align: center;
 }
 
@@ -47,11 +50,17 @@ header div:first-child p {
 
 /* sibling selector or could use  .settings */
 header div+div {
-  float: left;
-  width: 10%;
+  position: absolute;
+  top: 10px;
+  right: -10%;
+  width: 150px;
   text-align: center;
 }
 
+.settings img{
+  height: 50px;
+  width: 50px;
+}
 
 footer a {
   text-decoration: none;
@@ -76,12 +85,20 @@ footer {
     width: 100%;
     margin: 0;
   }
+
+  header div+div {
+    right: -6%;
+  }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
   .App {
     width: 80%
+  }
+
+  header div+div {
+    right: 5%;
   }
 }
 
@@ -90,6 +107,10 @@ footer {
   .App {
     width: 70%
   }
+
+  header div+div {
+    right: 11%;
+  }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
@@ -97,10 +118,18 @@ footer {
   .App {
     width: 60%
   }
+
+  header div+div {
+    right: 17%;
+  }
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   .App {
     width: 50%
+  }
+
+  header div+div {
+    right: 22%;
   }
 }
