@@ -9,9 +9,10 @@ function App() {
       <header className="App-header">
           < Welcome className="welcome" name="Alana" />
           < Settings className={"settings"} />
-          < Visualizer className={"visualizer"} />
+
       </header>
       <main id="player">
+          < Visualizer className={"visualizer"} />
           < NowPlaying className={"now-playing"}/>
           < PlayerControls />
       </main>
@@ -69,7 +70,7 @@ class NowPlaying extends React.Component {
     render() {
         return (
             <section className={this.props.className}>
-                <p>Now Playing Simple Progression</p>
+                <p>Twinkle Twinkle Little Star</p>
             </section>
         );
     }
@@ -77,11 +78,15 @@ class NowPlaying extends React.Component {
 
 
 class Visualizer extends React.Component {
+    constructor(props) {
+        super(props);
+
+    }
     render() {
         return (
-            <section className={this.props.className}>
-                <p>Soon to be visualizer</p>
+            <section>Soon to be visualizer.
             </section>
+
         );
     }
 }
@@ -104,19 +109,30 @@ class PlayPause extends React.Component {
         super(props);
         this.state = {isPlaying: false};
         this.state = {buttonImage: false};
+        this.state = {buttonText: "Play"};
         this.handleClick = this.handleClick.bind(this);
     }
+
+    componentDidMount() {
+            Tone.start();
+            console.log('audio is ready');
+            this.handleClick();
+    }
+
 
     handleClick() {
         this.setState(state => ({
             isPlaying: !state.isPlaying
         }));
         if ( this.state.isPlaying) {
-            playTones();
+                playTones();
+            this.state.buttonText = "Pause";
         } else {
             stopStones();
+            this.state.buttonText = "Play";
         }
     }
+
 
     render() {
         return (
@@ -124,7 +140,7 @@ class PlayPause extends React.Component {
                 <button
                     onClick={this.handleClick}
                     className={this.props.className}>
-                    Play Pause
+                    {this.state.buttonText}
                 </button>
             </div>
         );
@@ -133,10 +149,14 @@ class PlayPause extends React.Component {
 
 
 class Tempo extends React.Component {
+
+    handleClick(){
+        alert('Tempo coming soon!');
+    }
     render() {
         return (
             <div>
-                <button className={this.props.className}>
+                <button onClick={this.handleClick} lassName={this.props.className}>
                     Tempo Slider
                 </button>
             </div>
@@ -145,10 +165,14 @@ class Tempo extends React.Component {
 }
 
 class Looper extends React.Component {
+
+    handleClick(){
+        alert('Looper coming soon!');
+    }
     render() {
         return (
             <div>
-                <button className={this.props.className}>
+                <button onClick={this.handleClick} className={this.props.className}>
                  Looper
                 </button>
             </div>
@@ -160,22 +184,164 @@ class Looper extends React.Component {
  *
  */
 function playTones(){
-    const time = 0;
+    // const time = 0;
     var synth = new Tone.Synth();
     synth.toMaster();
-    synth.triggerAttack("C4", time);
-    synth.triggerRelease(time + 1.0);
 
-    var pattern = new Tone.Pattern(function(time, note){
-        synth.triggerAttackRelease(note, 0.25);
-    }, ["C4", "D4", "E4", "G4", "A4"]);
+    const twinkle = [
+        //part a.
+        {"time" : "0:0", "note" : "G4", "duration": "2n"},
+        {"time" : "0:2", "note" : "G4", "duration": "2n"},
 
-    //begin at the beginning
-    pattern.start(0);
+
+        {"time" : "1:0", "note" : "D5", "duration": "2n"},
+        {"time" : "1:2", "note" : "D5", "duration": "2n"},
+
+        {"time" : "2:0", "note" : "E5", "duration": "2n"},
+        {"time" : "2:2", "note" : "E5", "duration": "2n"},
+
+        {"time" : "3:0", "note" : "D5", "duration": "1n"},
+
+
+        {"time" : "4:0", "note" : "C5", "duration": "2n"},
+        {"time" : "4:2", "note" : "C5", "duration": "2n"},
+
+        {"time" : "5:0", "note" : "B4", "duration": "2n"},
+        {"time" : "5:2", "note" : "B4", "duration": "2n"},
+
+        {"time" : "6:0", "note" : "A4", "duration": "2n"},
+        {"time" : "6:2", "note" : "A4", "duration": "2n"},
+
+        {"time" : "7:0", "note" : "G4", "duration": "1n"},
+
+        //part b.
+        {"time" : "8:0", "note" : "D5", "duration": "2n"},
+        {"time" : "8:2", "note" : "D5", "duration": "2n"},
+
+
+        {"time" : "9:0", "note" : "C5", "duration": "2n"},
+        {"time" : "9:2", "note" : "C5", "duration": "2n"},
+
+        {"time" : "10:0", "note" : "B4", "duration": "2n"},
+        {"time" : "10:2", "note" : "B4", "duration": "2n"},
+
+        {"time" : "11:0", "note" : "A4", "duration": "1n"},
+
+
+        {"time" : "12:0", "note" : "D5", "duration": "2n"},
+        {"time" : "12:2", "note" : "D5", "duration": "2n"},
+
+        {"time" : "13:0", "note" : "C5", "duration": "2n"},
+        {"time" : "13:2", "note" : "C5", "duration": "2n"},
+
+        {"time" : "14:0", "note" : "B4", "duration": "2n"},
+        {"time" : "14:2", "note" : "B4", "duration": "2n"},
+
+        {"time" : "15:0", "note" : "A4", "duration": "1n"},
+
+
+        //part a.
+        {"time" : "16:0", "note" : "G4", "duration": "2n"},
+        {"time" : "16:2", "note" : "G4", "duration": "2n"},
+
+
+        {"time" : "17:0", "note" : "D5", "duration": "2n"},
+        {"time" : "17:2", "note" : "D5", "duration": "2n"},
+
+        {"time" : "18:0", "note" : "E5", "duration": "2n"},
+        {"time" : "18:2", "note" : "E5", "duration": "2n"},
+
+        {"time" : "19:0", "note" : "D5", "duration": "1n"},
+
+
+        {"time" : "20:0", "note" : "C5", "duration": "2n"},
+        {"time" : "20:2", "note" : "C5", "duration": "2n"},
+
+        {"time" : "21:0", "note" : "B4", "duration": "2n"},
+        {"time" : "21:2", "note" : "B4", "duration": "2n"},
+
+        {"time" : "22:0", "note" : "A4", "duration": "2n"},
+        {"time" : "22:2", "note" : "A4", "duration": "2n"},
+
+        {"time" : "23:0", "note" : "G4", "duration": "1n"},
+    ];
+
+    let notes = twinkle;
+
+    const americaTheBeautiful = [
+        {"time" : "0:0", "note" : "C4", "duration": "4n"},
+        {"time" : "0:1", "note" : "C4", "duration": "4n"},
+        {"time" : "0:2", "note" : "D4", "duration": "4n"},
+
+
+        {"time" : "1:0", "note" : "B3", "duration": "4n."},
+        {"time" : "1:1:2", "note" : "C4", "duration": "4n"},
+        {"time" : "1:2", "note" : "D4", "duration": "4n"},
+        //
+        {"time" : "2:0", "note" : "E4", "duration": "4n"},
+        {"time" : "2:1", "note" : "E4", "duration": "4n"},
+        {"time" : "2:2", "note" : "F4", "duration": "4n"},
+
+        {"time" : "3:0", "note" : "E4", "duration": "4n."},
+        {"time" : "3:1:2", "note" : "D4", "duration": "8n"},
+        {"time" : "3:2", "note" : "D4", "duration": "4n"},
+
+        {"time" : "4:0", "note" : "D4", "duration": "4n"},
+        {"time" : "4:1", "note" : "C4", "duration": "4n"},
+        {"time" : "4:2", "note" : "B3", "duration": "4n"},
+
+        {"time" : "5:0", "note" : "C4", "duration": "2n + 4n"},
+
+        {"time" : "6:0", "note" : "G4", "duration": "4n"},
+        {"time" : "6:1", "note" : "G4", "duration": "4n"},
+        {"time" : "6:2", "note" : "G4", "duration": "4n"},
+
+        {"time" : "7:0", "note" : "G4", "duration": "4n."},
+        {"time" : "7:1:2", "note" : "F4", "duration": "8n"},
+        {"time" : "7:2", "note" : "E4", "duration": "4n"},
+
+
+        {"time" : "8:0", "note" : "F4", "duration": "4n"},
+        {"time" : "8:1", "note" : "F4", "duration": "4n"},
+        {"time" : "8:2", "note" : "F4", "duration": "4n"},
+
+        {"time" : "9:0", "note" : "F4", "duration": "4n."},
+        {"time" : "9:1:1", "note" : "E4", "duration": "8n"},
+        {"time" : "9:2", "note" : "D4", "duration": "4n"},
+
+        {"time" : "10:0", "note" : "E4", "duration": "4n"},
+        {"time" : "10:1:0", "note" : "F4", "duration": "8n"},
+        {"time" : "10:1:2", "note" : "E4", "duration": "8n"},
+        {"time" : "10:2:0", "note" : "D4", "duration": "8n"},
+        {"time" : "10:1:2", "note" : "C4", "duration": "8n"},
+        {"time" : "10:2", "note" : "G4", "duration": "4n"},
+
+        {"time" : "11:0", "note" : "E4", "duration": "4n."},
+        {"time" : "11:1:2", "note" : "F4", "duration": "8n"},
+        {"time" : "11:2", "note" : "G4", "duration": "4n"},
+
+        {"time" : "12:0", "note" : "G4", "duration": "8n"},
+        {"time" : "12:0:2", "note" : "F4", "duration": "8n"},
+        {"time" : "12:1", "note" : "E4", "duration": "4n"},
+        {"time" : "12:2", "note" : "D4", "duration": "4n"},
+
+        {"time" : "13:0", "note" : "G4", "duration": "2n"}
+    ];
+    var part = new Tone.Part(function(time, notes){
+        //the value is an object which contains both the note and the velocity
+        synth.triggerAttackRelease(notes.note, notes.duration, time );
+    }, notes ).start(0);
+
+
+    Tone.Transport.bpm.value = 240;
     Tone.Transport.start();
+    console.log( 'transport started.');
 }
 
 
 function stopStones(){
     Tone.Transport.stop();
+    console.log( 'transport stopped.');
 }
+
+

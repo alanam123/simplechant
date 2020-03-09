@@ -6,7 +6,7 @@
 #8860D0;
  */
 
-body, p, a, ul, ol, li {
+body, p, a, ul, ol, li, button {
   font-family: 'Bellota Text', sans-serif
 }
 
@@ -37,6 +37,23 @@ player {
 .App player {
   height: 500px;
   display: block;
+}
+
+#player {
+  text-align: center;
+}
+
+button {
+  font-size: 18px;
+  margin: 10px;
+  border-radius: 50%;
+  padding: 10px;
+  width: 100px;
+  height: 100px;
+}
+
+button:hover{
+  background-color: #5AB9EA;
 }
 
 header div:first-child {
