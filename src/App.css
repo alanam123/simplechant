@@ -108,6 +108,12 @@ footer {
   }
 }
 
+.tempo input{
+  width: 80%;
+  text-align: center;
+  display: inline-block;
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
   .App {

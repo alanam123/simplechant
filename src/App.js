@@ -97,7 +97,7 @@ class PlayerControls extends React.Component {
         return (
             <section className={this.props.className}>
                 < PlayPause />
-                < Tempo />
+                < Tempo className="tempo"/>
                 < Looper />
             </section>
         );
@@ -149,16 +149,25 @@ class PlayPause extends React.Component {
 
 
 class Tempo extends React.Component {
-
-    handleClick(){
-        alert('Tempo coming soon!');
+    constructor(props) {
+        super(props);
+        this.state = {"bpm" : 120 };
     }
+
+
+    changeBPM(value){
+            this.setState( {"bpm": value } );
+            Tone.Transport.bpm.value = value;
+    }
+
     render() {
         return (
-            <div>
-                <button onClick={this.handleClick} lassName={this.props.className}>
-                    Tempo Slider
-                </button>
+            <div className={this.props.className}>
+                <h2>Tempo</h2>
+                <div>BPM: {this.state.bpm}</div>
+                <div>
+                    <input onChange={event =>this.changeBPM(event.target.value)} type="range" min="40" max="240" defaultValue="120"/>
+                </div>
             </div>
         );
     }
@@ -172,6 +181,10 @@ class Looper extends React.Component {
     render() {
         return (
             <div>
+                <input type="radio" id="once" name="repeat" value="once" /><label for="once">Once</label>
+                <input type="radio" id="continuous" name="repeat" value="continuous" /><label for="continuous">Continuous</label>
+                <input type="radio" id="times" name="repeat" value="times" /><label for="repeat">Repeat</label> <input type="number" defaultValue="8" min="2" max="99" />
+
                 <button onClick={this.handleClick} className={this.props.className}>
                  Looper
                 </button>
@@ -266,7 +279,7 @@ function playTones(){
         {"time" : "23:0", "note" : "G4", "duration": "1n"},
     ];
 
-    let notes = twinkle;
+
 
     const americaTheBeautiful = [
         {"time" : "0:0", "note" : "C4", "duration": "4n"},
@@ -327,13 +340,14 @@ function playTones(){
 
         {"time" : "13:0", "note" : "G4", "duration": "2n"}
     ];
+
+    let notes = twinkle;
     var part = new Tone.Part(function(time, notes){
         //the value is an object which contains both the note and the velocity
         synth.triggerAttackRelease(notes.note, notes.duration, time );
     }, notes ).start(0);
 
 
-    Tone.Transport.bpm.value = 240;
     Tone.Transport.start();
     console.log( 'transport started.');
 }
